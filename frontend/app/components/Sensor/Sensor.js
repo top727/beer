@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useToasts } from "react-toast-notifications";
 import classNames from "classnames";
+import socketIOClient from "socket.io-client";
+import { ENDPOINT } from "../../utils/config";
 import beers from "../../utils/beer";
 
 const Sensor = () => {
   const { addToast } = useToasts();
+
+  useEffect(() => {
+    const socket = socketIOClient(ENDPOINT);
+    socket.on("changedTemperature", (data) => {
+      console.log(data);
+      // setResponse(data);
+    });
+  }, []);
+
   return (
     <div className="sensor">
       <div className="beer-group">
