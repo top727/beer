@@ -9,26 +9,34 @@ var init = (server) => {
   io = require("socket.io").listen(server);
   io.set("origins", "*:*");
 
-  io.on("connection", async (socket) => {
+  io.on("connection", (socket) => {
     setInterval(async () => {
-      const newBeers = await Promise.all(
-        beers.map(async (x) => {
-          const result = await axios.get(`${serviceURL}/${x.id}`);
-          return {
-            ...x,
-            current: result.data.temperature,
-          };
-        })
-      );
+      try {
+        const newBeers = await Promise.all(
+          beers.map(async (x) => {
+            try {
+              const result = await axios.get(`${serviceURL}/${x.id}`);
+              return {
+                ...x,
+                current: result.data.temperature,
+              };
+            } catch (error) {
+              console.log(error);
+            }
+          })
+        );
 
-      const diff = beers.filter(
-        (x, index) => x.current != newBeers[index].current
-      );
+        const diff = beers.filter(
+          (x, index) => x.current != newBeers[index].current
+        );
 
-      beers = [...newBeers];
+        beers = [...newBeers];
 
-      if (diff.length) socket.emit("changedTemperature", { beers });
-    }, 1000);
+        if (diff.length) socket.emit("changedTemperature", { beers });
+      } catch (error) {
+        console.log(error);
+      }
+    }, 3000);
   });
 };
 

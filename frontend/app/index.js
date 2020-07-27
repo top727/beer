@@ -7,9 +7,8 @@ import "./index.scss";
 const App = () => {
   return (
     <div className="app">
-      <ToastProvider>
+      <ToastProvider autoDismissTimeout={2000} placement="bottom-right">
         <div className="title">Temperature Sensor</div>
-
         <Sensor />
       </ToastProvider>
     </div>
