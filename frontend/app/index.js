@@ -1,13 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import { ToastProvider } from "react-toast-notifications";
+import Sensor from "./components/Sensor/Sensor";
+import "./index.scss";
 
-class App extends React.Component{
-    render(){
-        return(
-            <div>Hello World</div>
-        )
-    }
-}
+const App = () => {
+  return (
+    <div className="app">
+      <ToastProvider>
+        <div className="title">Temperature Sensor</div>
 
-ReactDOM.render(<App />, document.getElementById('app'))
+        <Sensor />
+      </ToastProvider>
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById("root"));
