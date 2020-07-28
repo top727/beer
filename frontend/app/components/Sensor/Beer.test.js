@@ -18,9 +18,12 @@ afterEach(() => {
 const mockBeer = { min: 3, max: 5, current: 8, id: "test" };
 
 it("can render and update a Beer", () => {
-  // Test first render and componentDidMount
+  // Test component render
   act(() => {
-    ReactDOM.render(<Beer beer={{ min: 3, max: 5, current: 8, id: "test" }} />, container);
+    ReactDOM.render(
+      <Beer beer={{ min: 3, max: 5, current: 8, id: "test" }} />,
+      container
+    );
   });
   const beerName = container.querySelector(".beer-name-label");
   const beerMin = container.querySelector(".min-temp");
