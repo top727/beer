@@ -21,7 +21,7 @@ var init = (server) => {
                 current: result.data.temperature,
               };
             } catch (error) {
-              console.log(error);
+              throw error;
             }
           })
         );
