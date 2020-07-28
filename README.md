@@ -9,7 +9,6 @@ This is the Shane's beer test project
 - Express JS (Api REST)
 - socket.io
 - Axios
-- Mocha, Chai (Testing)
 - Babel (ES6 support)
 
 #### Scripts
