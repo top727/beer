@@ -52,7 +52,7 @@
   },
   "scripts": {
     "create": "webpack",
-    "test": "jest --watch --runInBand --detectOpenHandles",
+    "test": "jest --watchAll --runInBand --detectOpenHandles",
     "start": "webpack-dev-server --open --host localhost --port 8000"
   },
   "keywords": [],
